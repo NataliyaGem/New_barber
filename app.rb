@@ -7,7 +7,7 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
+    session[:identity] ? session[:identity] : '!!!!!'
   end
 end
 
@@ -40,4 +40,8 @@ end
 
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+end
+
+get '/about' do
+  erb :about
 end
