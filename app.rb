@@ -7,7 +7,7 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : '!!!!!'
+   session[:identity] ? session[:identity] : ''
   end
 end
 
@@ -20,7 +20,7 @@ before '/secure/*' do
 end
 
 get '/' do
-  erb 'Can you handle a <a href="/secure/place">secret</a>?'
+ erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
 
 get '/login/form' do
@@ -45,3 +45,30 @@ end
 get '/about' do
   erb :about
 end
+
+get '/contacts' do
+  erb :contacts
+end
+
+get '/records' do
+  erb :records
+end
+
+
+post '/' do
+  @user_name = params[:@user_name]
+  @phone = params[:@phone]
+  @time = params[:@time]
+
+  @title = "Спасибо!"
+  @message = "Уважаемый, #{@user_name}, мы будем ждать вас #{@time}"
+
+  f = File.open 'client.txt', 'a' # образует запись в файл, а - добавляет в конец файла
+      f.write "
+      Клиент: #{@user_name},    телефон: #{@phone},     дата/время: #{@time}"
+      f.close
+
+  erb :message
+end
+
+
