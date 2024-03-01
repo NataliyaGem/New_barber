@@ -50,8 +50,8 @@ get '/contacts' do
   erb :contacts
 end
 
-get '/records' do
-  erb :records
+get '/visite' do
+  erb :visite
 end
 
 
